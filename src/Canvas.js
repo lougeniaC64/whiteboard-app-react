@@ -28,15 +28,15 @@ class Canvas extends Component {
   }
 
   componentWillMount () {
-    this.props.fetchItem(this.props.id)
+    // this.props.fetchItem(this.props.id)
   }
 
   componentDidMount() {
-    const rootDiv = document.getElementById('root'),
+    const rootDiv = document.getElementById('mount'),
         rootDivParent = rootDiv.parentNode
     this.canvasContext = this.canvas.getContext('2d')  
-    this.canvas.setAttribute('height', rootDivParent.clientHeight - 32); //Not a magic number
-    this.canvas.setAttribute('width', rootDivParent.clientWidth - 8);  //Not a magic number
+    this.canvas.setAttribute('height', rootDivParent.clientHeight - 32) //Not a magic number
+    this.canvas.setAttribute('width', rootDivParent.clientWidth - 8)  //Not a magic number
   }
 
   draw(e) {
@@ -127,7 +127,7 @@ class Canvas extends Component {
   }
 
   render () {
-    const { item } = this.props
+    // const { item } = this.props
     const imgDivStyle = { display: 'none' }
     return (
         <div>
@@ -163,15 +163,17 @@ class Canvas extends Component {
   }
 }
 
-Canvas.propTypes = {
-  id: PropTypes.string.isRequired,
-  fetchItem: PropTypes.func.isRequired,
-  item: PropTypes.shape({
-    data: PropTypes.shape({
-      name: PropTypes.string.isRequired
-    }).isRequired
-  })
-}
+export default Canvas;
+
+// Canvas.propTypes = {
+//   id: PropTypes.string.isRequired,
+//   fetchItem: PropTypes.func.isRequired,
+//   item: PropTypes.shape({
+//     data: PropTypes.shape({
+//       name: PropTypes.string.isRequired
+//     }).isRequired
+//   })
+// }
 
 // export default connect(
 //   ({ item }) => ({ item }),
