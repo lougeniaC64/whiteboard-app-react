@@ -1,7 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-// import { connect } from 'react-redux'
-// import { bindActionCreators } from 'redux'
-// import { fetchItem } from './actions'
 
 class Canvas extends Component {
   constructor() {
@@ -25,10 +22,6 @@ class Canvas extends Component {
     this.changeWidth = this.changeWidth.bind(this)
     this.clearCanvas = this.clearCanvas.bind(this)
     this.loadImgFile = this.loadImgFile.bind(this)
-  }
-
-  componentWillMount () {
-    // this.props.fetchItem(this.props.id)
   }
 
   componentDidMount() {
@@ -113,21 +106,12 @@ class Canvas extends Component {
   }
 
   loadImgFile(e) {
-    // console.log('file changed') 
-    // const imageData = document.getElementById('imgSelector').files[0]
-    // const image = document.createElement('img')
-    // console.log(document.getElementById('imgSelector').files)
-    // document.getElementById('tiger').setAttribute('src', 'https://mainerides.files.wordpress.com/2008/02/snarling-tiger.thumbnail.jpg')
-    // const image = e.target.value.toString().includes('tame') ? document.getElementById('tameTiger') : document.getElementById('ferociousTiger')
     const image = document.getElementById('diagramImg')
     this.setState({ imageName: e.target.value })
-    // this.canvas.append
-    // console.log('image', image)
     this.canvasContext.drawImage(image, 0, 0)
   }
 
   render () {
-    // const { item } = this.props
     const imgDivStyle = { display: 'none' }
     return (
         <div>
@@ -154,8 +138,6 @@ class Canvas extends Component {
                 onMouseLeave={this.stopDrawing}>
             </canvas>
             <div style={imgDivStyle}>
-              {/*<img id="tameTiger" src='https://pbs.twimg.com/profile_images/649767770914209793/7X6SziWj.jpg' />
-              <img id="ferociousTiger" src='http://cdn.overclock.net/7/79/900x900px-LL-797a22aa_Roaring-Tiger.jpeg' />*/}
               <img id="diagramImg" src="https://image.slidesharecdn.com/workflow-logisticsset-091118022535-phpapp01/95/powerpoint-work-flow-logistics-set-3-638.jpg" />
             </div>
         </div>
@@ -164,23 +146,3 @@ class Canvas extends Component {
 }
 
 export default Canvas;
-
-// Canvas.propTypes = {
-//   id: PropTypes.string.isRequired,
-//   fetchItem: PropTypes.func.isRequired,
-//   item: PropTypes.shape({
-//     data: PropTypes.shape({
-//       name: PropTypes.string.isRequired
-//     }).isRequired
-//   })
-// }
-
-// export default connect(
-//   ({ item }) => ({ item }),
-//   (dispatch) => bindActionCreators(
-//     {
-//       fetchItem
-//     },
-//     dispatch
-//   )
-// )(Canvas)
