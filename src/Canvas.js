@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import { getImageFile } from '../helper.js'
 
 class Canvas extends Component {
   constructor() {
