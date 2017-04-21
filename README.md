@@ -1,7 +1,7 @@
 White Board App
 ---
 
-Welcome!
+Hey, friend! This is a simple white board app I wrote in react and (coming soon) redux.
 
 
 Usage
@@ -17,12 +17,18 @@ npm start
 Setup
 ---
 
+
+Install the dependencies with this command:
+
 ```
 npm install
 ```
 
 Compile
 ---
+
+
+Compile the code via webpack with this command:
 
 ```
 npm run compile
