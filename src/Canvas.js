@@ -12,8 +12,7 @@ class Canvas extends Component {
         draggingHistory: [],
         colorHistory: [],
         lineWidthHistory: [],
-        imageName: '',
-        imageUrl: ''
+        imageData: null
     }
 
     this.draw = this.draw.bind(this)
@@ -23,6 +22,7 @@ class Canvas extends Component {
     this.changeWidth = this.changeWidth.bind(this)
     this.clearCanvas = this.clearCanvas.bind(this)
     this.loadImgFile = this.loadImgFile.bind(this)
+    this.addImgToCanvas = this.addImgToCanvas.bind(this)
   }
 
   componentDidMount() {
@@ -63,7 +63,7 @@ class Canvas extends Component {
 
   clearCanvas(e) {
     this.canvasContext.clearRect(0, 0, this.canvasContext.canvas.width, this.canvasContext.canvas.height)
-    if (e) {
+    // if (e) {
       this.setState({
         canDraw: false,
         xCoordinates: [],
@@ -71,10 +71,9 @@ class Canvas extends Component {
         draggingHistory: [],
         colorHistory: [],
         lineWidthHistory: [],
-        imageName: '',
-        imageUrl: ''
+        imageData: null
       })
-    }
+    // }
 
   }
 
@@ -107,13 +106,19 @@ class Canvas extends Component {
   }
 
   loadImgFile(e) {
-    const image = document.getElementById('diagramImg')
-    this.setState({ imageName: e.target.value })
-    this.canvasContext.drawImage(image, 0, 0)
+    const that = this;
+    that.clearCanvas()
+    getImageFile(e.target.files[0], (imageData) => {
+      that.setState({ imageData: imageData })
+    })
+  }
+
+  addImgToCanvas(e) {
+    const selectedImgElement = document.getElementById('selectedImg')
+    this.canvasContext.drawImage(selectedImgElement, 0, 0)
   }
 
   render () {
-    const imgDivStyle = { display: 'none' }
     return (
         <div>
             <div>
@@ -129,7 +134,7 @@ class Canvas extends Component {
               &nbsp;&nbsp;&nbsp;
               <button onClick={this.clearCanvas}>clear whiteboard</button>
               &nbsp;&nbsp;&nbsp;
-              <input id="imgSelector" type="file" value={this.state.imageName} accept="image/*" onChange={this.loadImgFile} />
+              <input id="imgSelector" type="file" accept="image/*" onChange={this.loadImgFile} />
             </div>
             <canvas id="whiteBoard" 
                 ref={(canvas) => { this.canvas = canvas }} 
@@ -138,8 +143,8 @@ class Canvas extends Component {
                 onMouseUp={this.stopDrawing} 
                 onMouseLeave={this.stopDrawing}>
             </canvas>
-            <div style={imgDivStyle}>
-              <img id="diagramImg" src="https://image.slidesharecdn.com/workflow-logisticsset-091118022535-phpapp01/95/powerpoint-work-flow-logistics-set-3-638.jpg" />
+            <div style={{ display: 'none' }}>
+              <img id="selectedImg" src={this.state.imageData} onLoad={this.addImgToCanvas} />
             </div>
         </div>
     )
