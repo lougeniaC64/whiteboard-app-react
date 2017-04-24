@@ -29,8 +29,8 @@ class Canvas extends Component {
     const rootDiv = document.getElementById('mount'),
         rootDivParent = rootDiv.parentNode
     this.canvasContext = this.canvas.getContext('2d')  
-    this.canvas.setAttribute('height', rootDivParent.clientHeight - 32) //Not a magic number
-    this.canvas.setAttribute('width', rootDivParent.clientWidth - 8)  //Not a magic number
+    this.canvas.setAttribute('height', rootDivParent.offsetHeight)
+    this.canvas.setAttribute('width', rootDivParent.offsetWidth)
   }
 
   draw(e) {
