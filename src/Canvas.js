@@ -105,7 +105,6 @@ class Canvas extends Component {
 
   loadImgFile(e) {
     const that = this;
-    that.clearCanvas()
     getImageFile(e.target.files[0], (imageData) => {
       that.setState({ imageData: imageData })
     })
@@ -113,6 +112,7 @@ class Canvas extends Component {
 
   addImgToCanvas(e) {
     const selectedImgElement = document.getElementById('selectedImg')
+    this.clearCanvas()
     this.canvasContext.drawImage(selectedImgElement, 0, 0)
   }
 
