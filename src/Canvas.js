@@ -63,7 +63,6 @@ class Canvas extends Component {
 
   clearCanvas(e) {
     this.canvasContext.clearRect(0, 0, this.canvasContext.canvas.width, this.canvasContext.canvas.height)
-    
     this.setState({
       canDraw: false,
       xCoordinates: [],
@@ -73,13 +72,10 @@ class Canvas extends Component {
       lineWidthHistory: [],
       imageData: null
     })
-
   }
 
   redraw() {
     this.canvasContext.lineJoin = 'round'
-    this.canvasContext.lineWidth = 5
-
     this.state.xCoordinates.map((xCoordinate, index) => {
         this.canvasContext.beginPath()
         if(this.state.draggingHistory[index] && index) {
