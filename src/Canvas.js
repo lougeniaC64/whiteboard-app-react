@@ -63,22 +63,20 @@ class Canvas extends Component {
 
   clearCanvas(e) {
     this.canvasContext.clearRect(0, 0, this.canvasContext.canvas.width, this.canvasContext.canvas.height)
-    // if (e) {
-      this.setState({
-        canDraw: false,
-        xCoordinates: [],
-        yCoordinates: [],
-        draggingHistory: [],
-        colorHistory: [],
-        lineWidthHistory: [],
-        imageData: null
-      })
-    // }
+    
+    this.setState({
+      canDraw: false,
+      xCoordinates: [],
+      yCoordinates: [],
+      draggingHistory: [],
+      colorHistory: [],
+      lineWidthHistory: [],
+      imageData: null
+    })
 
   }
 
   redraw() {
-    // this.clearCanvas()
     this.canvasContext.lineJoin = 'round'
     this.canvasContext.lineWidth = 5
 
